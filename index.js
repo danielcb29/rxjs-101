@@ -1,3 +1,5 @@
+import Rx from 'rxjs/Rx';
+
 var observable = Rx.Observable.create(observer => {
     observer.next('Hello World');
 });
