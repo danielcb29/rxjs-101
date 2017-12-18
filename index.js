@@ -21,6 +21,39 @@ numbers$.subscribe(n => {
     console.log(n);
 });
 
+//List of Genres
+var genres = [];
+var r = new XMLHttpRequest();
+r.open("GET", "https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US", true);
+r.onreadystatechange = function () {
+  if (r.readyState != 4 || r.status != 200) return;
+  //alert("Success: " + r.responseText);
+  genres = JSON.parse(r.responseText).genres;
+  console.log(genres.length);
+};
+r.send();
+
+let requests$ = Rx.Observable
+  .fromEvent(btnLoadMore, 'click')
+  .map( _ => 'https://api.github.com/users')
+  .startWith('https://api.github.com/users')
+
+let responses$ = requests$
+  .flatMap(url => Rx.Observable.fromPromise(fetch(url)))
+  .flatMap(r => Rx.Observable.fromPromise(r.json()))
+
+// A stream
+var genres$ = Rx.Observable
+  .interval(500)
+  .take(1)
+  .map(i => genres[i]);
+
+genres$.subscribe(n => {
+    let box = document.getElementById('3');
+    box.innerHTML = n.name;
+    console.log(n.name);
+});
+
 var mouseMove = Rx.Observable.fromEvent(document, "mousemove");
 var text = "RxJs experiment";
 var container = document.getElementById('container');
