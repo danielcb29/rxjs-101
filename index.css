@@ -21,4 +21,5 @@
 .example-content {
     padding: 25px;
     background-color: #fcfcfc;
+    display: none;
 }
