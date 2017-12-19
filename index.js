@@ -35,41 +35,36 @@ r.onreadystatechange = function () {
 };
 r.send();
 
-let requests$ = Rx.Observable
-  .fromEvent(btnLoadMore, 'click')
-  .map( _ => 'https://api.github.com/users')
-  .startWith('https://api.github.com/users')
+let genres$ = Rx.Observable.create(observer => {
+    observer.next('genres.length');
+});
 
-let responses$ = requests$
-  .flatMap(url => Rx.Observable.fromPromise(fetch(url)))
-  .flatMap(r => Rx.Observable.fromPromise(r.json()))
-
-// A stream
-var genres$ = Rx.Observable
-  .interval(500)
-  .take(1)
-  .map(i => genres[i]);
+// // A stream
+// var genres$ = Rx.Observable
+//   .interval(500)
+//   .take(1)
+//   .map(i => genres[i]);
 
 genres$.subscribe(n => {
     let box = document.getElementById('3');
-    box.innerHTML = n.name;
-    console.log(n.name);
+    box.innerHTML = n;
+    console.log(n);
 });
 
-var mouseMove = Rx.Observable.fromEvent(document, "mousemove");
-var text = "RxJs experiment";
-var container = document.getElementById('container');
+// var mouseMove = Rx.Observable.fromEvent(document, "mousemove");
+// var text = "RxJs experiment";
+// var container = document.getElementById('container');
 
-for(var i=0; i <text.length; i++){
-    (function(i){
-        var s = document.createElement("span");
-        s.innerHTML = text.charAt(i);
-        s.style.position = "absolute";
-        container.appendChild(s);
+// for(var i=0; i <text.length; i++){
+//     (function(i){
+//         var s = document.createElement("span");
+//         s.innerHTML = text.charAt(i);
+//         s.style.position = "absolute";
+//         container.appendChild(s);
 
-        mouseMove.delay(i*100).subscribe(function(mouseEvent){
-            s.style.top = mouseEvent.clientY + "px";
-            s.style.left = mouseEvent.clientX + i * 10 + 15 + "px";
-        });
-    })(i);
-}
+//         mouseMove.delay(i*100).subscribe(function(mouseEvent){
+//             s.style.top = mouseEvent.clientY + "px";
+//             s.style.left = mouseEvent.clientX + i * 10 + 15 + "px";
+//         });
+//     })(i);
+// }
