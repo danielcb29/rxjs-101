@@ -14476,25 +14476,25 @@ Object(__WEBPACK_IMPORTED_MODULE_3__api__["a" /* runApiExample */])();
 
 
 const initAccordion = () => {
-	const accordionHeader = document.getElementsByClassName('example-title');
-	const headerClick = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, 'click');
-	headerClick.map(event => event.target).map(target => {
-		const active = target.classList.contains('active');
-		const display = active ? 'none' : 'flex';
-		return {
-			active: active,
-			target: target,
-			display: display
-		};
-	}).do(({ target, active }) => {
-		if (active) {
-			target.classList.remove('active');
-		} else {
-			target.classList.toggle('active');
-		}
-	}).do(targetOptions => targetOptions.target = targetOptions.target.nextElementSibling).subscribe(({ target, display }) => {
-		target.style.display = display;
-	});
+  const accordionHeader = document.getElementsByClassName("example-title");
+  const headerClick = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
+  headerClick.map(event => event.target).map(target => {
+    const active = target.classList.contains("active");
+    const display = active ? "none" : "flex";
+    return {
+      active: active,
+      target: target,
+      display: display
+    };
+  }).do(({ target, active }) => {
+    if (active) {
+      target.classList.remove("active");
+    } else {
+      target.classList.toggle("active");
+    }
+  }).do(targetOptions => targetOptions.target = targetOptions.target.nextElementSibling).subscribe(({ target, display }) => {
+    target.style.display = display;
+  });
 };
 
 
