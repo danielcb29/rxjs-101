@@ -1,8 +1,12 @@
 import { initAccordion } from './accordion';
 import { runHelloWorld } from './helloworld';
+import { runMouseEvent } from './mouseEvent';
+import { runApiExample } from './api';
 
 initAccordion();
 runHelloWorld();
+runMouseEvent();
+runApiExample();
 
 // var numbers = [1,2,3,4,5,6,7,8,9,10];
 // // A stream
@@ -16,21 +20,3 @@ runHelloWorld();
 //     box.innerHTML = n;
 //     console.log(n);
 // });
-
-// var mouseMove = Rx.Observable.fromEvent(document, "mousemove");
-// var text = "RxJs experiment";
-// var container = document.getElementById('container');
-
-// for(var i=0; i <text.length; i++){
-//     (function(i){
-//         var s = document.createElement("span");
-//         s.innerHTML = text.charAt(i);
-//         s.style.position = "absolute";
-//         container.appendChild(s);
-
-//         mouseMove.delay(i*100).subscribe(function(mouseEvent){
-//             s.style.top = mouseEvent.clientY + "px";
-//             s.style.left = mouseEvent.clientX + i * 10 + 15 + "px";
-//         });
-//     })(i);
-// }
