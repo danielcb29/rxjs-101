@@ -46,3 +46,11 @@
 div pre.prettyprint {
     border: none;
 }
+
+li {
+    color: #9e018f;
+}
+
+li span {
+    color: black;
+}
