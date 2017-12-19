@@ -14223,23 +14223,69 @@ numbers$.subscribe(n => {
     console.log(n);
 });
 
-var mouseMove = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(document, "mousemove");
-var text = "RxJs experiment";
-var container = document.getElementById('container');
+//List of Genres
+// var r = new XMLHttpRequest();
+// r.open("GET", "https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US", true);
+// r.onreadystatechange = function () {
+//   if (r.readyState != 4 || r.status != 200) return;
+//   //alert("Success: " + r.responseText);
+//   genres = JSON.parse(r.responseText).genres;
+//   console.log(genres.length);
+// };
+// r.send();
 
-for (var i = 0; i < text.length; i++) {
-    (function (i) {
-        var s = document.createElement("span");
-        s.innerHTML = text.charAt(i);
-        s.style.position = "absolute";
-        container.appendChild(s);
+let btnViewGenres = document.querySelector('.view-genres');
 
-        mouseMove.delay(i * 100).subscribe(function (mouseEvent) {
-            s.style.top = mouseEvent.clientY + "px";
-            s.style.left = mouseEvent.clientX + i * 10 + 15 + "px";
-        });
-    })(i);
+let requests$ = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(btnViewGenres, 'click').map(_ => 'https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US');
+//.startWith('https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US');
+
+let responses$ = requests$.flatMap(url => __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromPromise(fetch(url))).flatMap(r => __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromPromise(r.json()));
+
+let genres$ = responses$.map(getGenres);
+
+function getGenres(res) {
+    return res.genres;
 }
+
+genres$.subscribe(response => {
+    response.forEach(genre => {
+        // let box = document.getElementById('3');
+        // box.innerHTML = genre.name;
+        appendGenresToDOM(genre);
+    });
+});
+
+function toTemplate(genre) {
+    var a = document.createElement("a");
+    a.textContent = genre.name;
+    var div = document.createElement("div");
+    div.appendChild(a);
+    return div;
+}
+
+function appendGenresToDOM(genre) {
+    var t = toTemplate(genre);
+    var g = document.getElementById('3');
+    g.appendChild(t);
+}
+
+// var mouseMove = Rx.Observable.fromEvent(document, "mousemove");
+// var text = "RxJs experiment";
+// var container = document.getElementById('container');
+
+// for(var i=0; i <text.length; i++){
+//     (function(i){
+//         var s = document.createElement("span");
+//         s.innerHTML = text.charAt(i);
+//         s.style.position = "absolute";
+//         container.appendChild(s);
+
+//         mouseMove.delay(i*100).subscribe(function(mouseEvent){
+//             s.style.top = mouseEvent.clientY + "px";
+//             s.style.left = mouseEvent.clientX + i * 10 + 15 + "px";
+//         });
+//     })(i);
+// }
 
 /***/ }),
 /* 160 */
