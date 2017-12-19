@@ -17,14 +17,32 @@
                     RxJS Hello World
                 </div>
                 <div class="example-content">
-                    <div class="w3-container" id="card">
+                    <div class="code">                    
+                        <pre class="prettyprint lang-js">
+                            <code >
+                            
+const obs = Rx.Observable.create(observer => {
+    observer.next('Hello World');
+});
+
+obs.subscribe(result => {
+    console.log(result);
+}); 
+                            </code>
+                        </pre>                 
+                    </div>
+                    <div class="interaction">
+                        <h3>Observable Hello World</h3>
+                        <div class="w3-panel w3-card" id="helloworld-box"></div>
+                    </div>
+                    <!-- <div class="w3-container" id="card">
                         <div class="w3-panel w3-card" id="1"></div>
                         <p>Array events: </p>
                         <div class="w3-panel w3-card-2 w3-light-gray" id="2"></div>
                         <div class="w3-panel w3-card-4" id="3"></div>
                     </div>
                     <div id="box"></div>
-                    <div id="container"></div>    
+                    <div id="container"></div>     -->
                 </div>
             </section>
 
@@ -39,7 +57,8 @@
             
             
         </div>
-        
+
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>        
         <script src="dist/bundle.js"></script>
     </body>
 </html>

@@ -22,4 +22,27 @@
     padding: 25px;
     background-color: #fcfcfc;
     display: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+}
+
+.code {
+    background-color: #eeeff0;
+    padding: 0 1.5em;
+}
+
+.interaction {
+    flex: 1;
+    padding: 25px;
+}
+
+.pre {
+    flex: 1;
+    padding: 25px;
+}
+
+div pre.prettyprint {
+    border: none;
 }

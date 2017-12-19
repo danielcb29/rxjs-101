@@ -1,18 +1,8 @@
 import { initAccordion } from './accordion';
+import { runHelloWorld } from './helloworld';
 
 initAccordion();
-
-// import Rx from 'rxjs/Rx';
-
-// var observable = Rx.Observable.create(observer => {
-//     observer.next('Hello World');
-// });
-
-// observable.subscribe(result => {
-//     let box = document.getElementById('1');
-//     box.innerHTML = result;
-//     console.log(result);
-// }); 
+runHelloWorld();
 
 // var numbers = [1,2,3,4,5,6,7,8,9,10];
 // // A stream
