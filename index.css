@@ -1,0 +1,48 @@
+#rxjs-example {
+    margin: 15px;
+}
+
+#rxjs-example h2 {
+    text-align: center;
+}
+
+.example-title {
+    background-color: #de0790;
+    color: white;
+    padding: 10px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.active, .example-title:hover {
+    background-color: #9e018f;
+}
+
+.example-content {
+    padding: 25px;
+    background-color: #fcfcfc;
+    display: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+}
+
+.code {
+    background-color: #eeeff0;
+    padding: 0 1.5em;
+}
+
+.interaction {
+    flex: 1;
+    padding: 25px;
+}
+
+.pre {
+    flex: 1;
+    padding: 25px;
+}
+
+div pre.prettyprint {
+    border: none;
+}
