@@ -1,0 +1,24 @@
+#rxjs-example {
+    margin: 15px;
+}
+
+#rxjs-example h2 {
+    text-align: center;
+}
+
+.example-title {
+    background-color: #de0790;
+    color: white;
+    padding: 10px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.active, .example-title:hover {
+    background-color: #9e018f;
+}
+
+.example-content {
+    padding: 25px;
+    background-color: #fcfcfc;
+}

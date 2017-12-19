@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack"
+    "start": "webpack && webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,8 @@
   "author": "Daniel Correa <daniel.correa@autodesk.com>",
   "license": "ISC",
   "dependencies": {
-    "rxjs": "^5.5.5"
+    "rxjs": "^5.5.5",
+    "webpack-dev-server": "^2.9.7"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
