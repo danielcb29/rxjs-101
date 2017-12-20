@@ -25,17 +25,19 @@
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
+    overflow-x: auto;
     
 }
 
 .code {
     background-color: #eeeff0;
     padding: 0 1.5em;
+    flex: 1;
 }
 
 .interaction {
     flex: 1;
-    padding: 25px;
+    padding: 2em;
 }
 
 .pre {

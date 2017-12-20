@@ -47,13 +47,31 @@ obs.subscribe(result => {
                         <pre class="prettyprint lang-js">
                             <code >
                             
-const obs = Rx.Observable.create(observer => {
-    observer.next('Hello World');
-});
+const observable = Rx.Observable.fromEvent(input, "input");
+observable
+    .map(event => event.target)
+    .map(target => {
+        // Take important information of the target
+        const value = target.value;
+        const letters = value.length;
+        return {
+            value: value,
+            letters: letters,
+        }
+    })
+    .do(data => {
+        // Some validations :)
+        data.value = data.value !== '' ? data.value : '-';
+        data.letters = data.letters !== 0 ? data.letters : '-';
+    })
+    .subscribe(( { value, letters, timestamp } ) => {
+        // Change the result elements
+        const resultInput = document.getElementById('input-result');
+        const lettersInput = document.getElementById('number-letters');
 
-obs.subscribe(result => {
-    console.log(result);
-}); 
+        resultInput.innerHTML = value;
+        lettersInput.innerHTML = letters;
+    });
                             </code>
                         </pre>                 
                     </div>
@@ -62,8 +80,8 @@ obs.subscribe(result => {
                         <input class="w3-input w3-border" type="text" placeholder="Text" name="text" id="input-example">
                         <h4>Result</h4>
                         <ul>
-                            <li><span><b>Input result:</b> 0</span></li>
-                            <li><span><b>Number of letters:</b> 0</span></li>
+                            <li><span><b>Input result:</b> <span id="input-result">-</span></span></li>
+                            <li><span><b>Number of letters:</b> <span id="number-letters">-</span></span></li>
                         </ul>
                     </div>
                 </div>
@@ -159,7 +177,7 @@ function removeAllChildrenFromNode(node){
                 <div class="example-title">
                     RxJS from mouse event
                 </div>
-                <div class="example-content">
+                <div class="example-content" style="width:50%; margin: 0 auto;">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -217,9 +235,10 @@ for(var i=0; i < text.length; i++){
                             <code >
                             
 let btnViewGenres = document.querySelector('.view-genres');
+const apiUrl = '...';
 let requests$ = Rx.Observable
         .fromEvent(btnViewGenres, 'click')
-        .map( _ => 'https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US');
+        .map( _ => apiUrl);
 let responses$ = requests$
         .flatMap(url => Rx.Observable.fromPromise(fetch(url)))
         .flatMap(r => Rx.Observable.fromPromise(r.json()));
@@ -263,9 +282,52 @@ function appendGenresToDOM(genre){
                     RxJS from ... any implementation
                 </div>
                 <div class="example-content">
-                    This Accordion was implemented using RxJS!! :D 
+                    <div class="code" style="width:50%;">
+                        <pre class="prettyprint lang-js">
+                            <code >
+const observable = Rx.Observable.fromEvent(accordionHeader, "click");
+observable
+    .map(event => event.target)
+    .map(target => {
+        const isActive = target.classList.contains("active");
+        const display = active ? "none" : "flex";
+        return {
+            isActive: isActive,
+            target: target,
+            display: display
+        };
+    })
+    .do(({ target, isActive }) => {
+        if (isActive) {
+            target.classList.remove("active");
+        } else {
+            target.classList.toggle("active");
+        }
+    })
+    .do(
+        targetOptions => {
+            targetOptions.target = targetOptions.target.nextElementSibling
+    })
+    .subscribe(({ target, display }) => {
+        target.style.display = display;
+    });
+                            </code>
+                        </pre>                 
+                    </div>
+                    <div class="interaction">
+                        <h3>This Accordion was implemented using RxJS!! :D</h3>
+                        <p>This accordion uses RxJS to handle click envents and show or dismiss content blocks</p>
+                        <ol>
+                            <li><span>Catch event</span></li>
+                            <li><span>Define if is currently active or not</span></li>
+                            <li><span>Change element class</span></li>
+                            <li><span>Get next element (content)</span></li>
+                            <li><span>Change display property of the event</span></li>
+                        </ol>
+                    </div>
                 </div>
             </section>
+            
         </div>
 
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>        

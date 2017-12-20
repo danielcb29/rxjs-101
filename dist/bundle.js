@@ -14443,6 +14443,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseEvent__ = __webpack_require__(458);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api__ = __webpack_require__(459);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__array__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__input__ = __webpack_require__(461);
+
 
 
 
@@ -14451,6 +14453,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 Object(__WEBPACK_IMPORTED_MODULE_0__accordion__["a" /* initAccordion */])();
 Object(__WEBPACK_IMPORTED_MODULE_1__helloworld__["a" /* runHelloWorld */])();
+Object(__WEBPACK_IMPORTED_MODULE_5__input__["a" /* runInput */])();
 Object(__WEBPACK_IMPORTED_MODULE_2__mouseEvent__["a" /* runMouseEvent */])();
 Object(__WEBPACK_IMPORTED_MODULE_3__api__["a" /* runApiExample */])();
 Object(__WEBPACK_IMPORTED_MODULE_4__array__["a" /* runArrayExample */])();
@@ -14467,17 +14470,17 @@ Object(__WEBPACK_IMPORTED_MODULE_4__array__["a" /* runArrayExample */])();
 
 const initAccordion = () => {
   const accordionHeader = document.getElementsByClassName("example-title");
-  const headerClick = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
-  headerClick.map(event => event.target).map(target => {
-    const active = target.classList.contains("active");
-    const display = active ? "none" : "flex";
+  const accordionObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
+  accordionObservable.map(event => event.target).map(target => {
+    const isActive = target.classList.contains("active");
+    const display = isActive ? "none" : "flex";
     return {
-      active: active,
+      isActive: isActive,
       target: target,
       display: display
     };
-  }).do(({ target, active }) => {
-    if (active) {
+  }).do(({ target, isActive }) => {
+    if (isActive) {
       target.classList.remove("active");
     } else {
       target.classList.toggle("active");
@@ -25752,6 +25755,40 @@ const runArrayExample = () => {
         }
         return shell;
     }
+};
+
+
+
+/***/ }),
+/* 461 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runInput; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
+
+
+const runInput = () => {
+    const input = document.getElementById("input-example");
+    const inputObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(input, "input");
+    inputObservable.map(event => event.target).map(target => {
+        const value = target.value;
+        const letters = value.length;
+        return {
+            value: value,
+            letters: letters
+        };
+    }).do(data => {
+        data.value = data.value !== '' ? data.value : '-';
+        data.letters = data.letters !== 0 ? data.letters : '-';
+    }).subscribe(({ value, letters, timestamp }) => {
+        const resultInput = document.getElementById('input-result');
+        const lettersInput = document.getElementById('number-letters');
+
+        resultInput.innerHTML = value;
+        lettersInput.innerHTML = letters;
+    });
 };
 
 
