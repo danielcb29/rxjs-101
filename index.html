@@ -171,7 +171,7 @@ for(var i=0; i < text.length; i++){
                             <code >
                             
 let btnViewGenres = document.querySelector('.view-genres');
-const apiUrl = 'https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US';
+const apiUrl = '...';
 let requests$ = Rx.Observable
         .fromEvent(btnViewGenres, 'click')
         .map( _ => apiUrl);
@@ -218,7 +218,46 @@ function appendGenresToDOM(genre){
                     RxJS from ... any implementation
                 </div>
                 <div class="example-content">
-                    This Accordion was implemented using RxJS!! :D 
+                    <div class="code">
+                        <pre class="prettyprint lang-js">
+                            <code >
+const observable = Rx.Observable.fromEvent(accordionHeader, "click");
+observable
+    .map(event => event.target)
+    .map(target => {
+        const isActive = target.classList.contains("active");
+        const display = active ? "none" : "flex";
+        return {
+            isActive: isActive,
+            target: target,
+            display: display
+        };
+    })
+    .do(({ target, isActive }) => {
+        if (isActive) {
+            target.classList.remove("active");
+        } else {
+            target.classList.toggle("active");
+        }
+    })
+    .do(
+        targetOptions => {
+            targetOptions.target = targetOptions.target.nextElementSibling
+    })
+    .subscribe(({ target, display }) => {
+        target.style.display = display;
+    });
+                            </code>
+                        </pre>                 
+                    </div>
+                    <div class="interaction">
+                        <h3>This Accordion was implemented using RxJS!! :D</h3>
+                        <p>This accordion uses RxJS to handle click envents and show or dismiss content blocks</p>
+                        <ol>
+                            <li>Catch event</li>
+                            <li>Then...</li>
+                        </ol>
+                    </div>
                 </div>
             </section>
             

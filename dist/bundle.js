@@ -14470,17 +14470,17 @@ Object(__WEBPACK_IMPORTED_MODULE_4__array__["a" /* runArrayExample */])();
 
 const initAccordion = () => {
   const accordionHeader = document.getElementsByClassName("example-title");
-  const headerClick = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
-  headerClick.map(event => event.target).map(target => {
-    const active = target.classList.contains("active");
-    const display = active ? "none" : "flex";
+  const accordionObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
+  accordionObservable.map(event => event.target).map(target => {
+    const isActive = target.classList.contains("active");
+    const display = isActive ? "none" : "flex";
     return {
-      active: active,
+      isActive: isActive,
       target: target,
       display: display
     };
-  }).do(({ target, active }) => {
-    if (active) {
+  }).do(({ target, isActive }) => {
+    if (isActive) {
       target.classList.remove("active");
     } else {
       target.classList.toggle("active");

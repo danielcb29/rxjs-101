@@ -2,20 +2,20 @@ import Rx from "rxjs/Rx";
 
 const initAccordion = () => {
   const accordionHeader = document.getElementsByClassName("example-title");
-  const headerClick = Rx.Observable.fromEvent(accordionHeader, "click");
-  headerClick
+  const accordionObservable = Rx.Observable.fromEvent(accordionHeader, "click");
+  accordionObservable
     .map(event => event.target)
     .map(target => {
-      const active = target.classList.contains("active");
-      const display = active ? "none" : "flex";
+      const isActive = target.classList.contains("active");
+      const display = isActive ? "none" : "flex";
       return {
-        active: active,
+        isActive: isActive,
         target: target,
         display: display
       };
     })
-    .do(({ target, active }) => {
-      if (active) {
+    .do(({ target, isActive }) => {
+      if (isActive) {
         target.classList.remove("active");
       } else {
         target.classList.toggle("active");
