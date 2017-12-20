@@ -14443,6 +14443,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mouseEvent__ = __webpack_require__(458);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__api__ = __webpack_require__(459);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__array__ = __webpack_require__(460);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__input__ = __webpack_require__(461);
+
 
 
 
@@ -14451,6 +14453,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 Object(__WEBPACK_IMPORTED_MODULE_0__accordion__["a" /* initAccordion */])();
 Object(__WEBPACK_IMPORTED_MODULE_1__helloworld__["a" /* runHelloWorld */])();
+Object(__WEBPACK_IMPORTED_MODULE_5__input__["a" /* runInput */])();
 Object(__WEBPACK_IMPORTED_MODULE_2__mouseEvent__["a" /* runMouseEvent */])();
 Object(__WEBPACK_IMPORTED_MODULE_3__api__["a" /* runApiExample */])();
 Object(__WEBPACK_IMPORTED_MODULE_4__array__["a" /* runArrayExample */])();
@@ -25695,53 +25698,94 @@ const runApiExample = () => {
 
 
 const runArrayExample = () => {
-    var customerName = prompt("Please enter your name", "<name goes here>");
+    // var customerName = prompt("Please enter your name", "<name goes here>");
 
-    if (customerName != null) {
+    // if (customerName!= null) {
 
-        document.getElementById("box").innerHTML = "Hello " + customerName + "! How are you today?";
+    // document.getElementById("box").innerHTML =
+
+    // "Hello " + customerName + "! How are you today?";
+
+    // }
+
+    let btnRegister = document.getElementById('register');
+    let btnShow = document.getElementById('show');
+
+    let namesList = [];
+
+    function insert() {
+        let firstName = document.getElementById("fn").value;
+        let lastName = document.getElementById("ln").value;
+        let fullName = {
+            firstName: firstName,
+            lastName: lastName
+        };
+
+        namesList.push(fullName);
     }
-    // let btnRegister = document.getElementById('register');
-    // let btnShow = document.getElementById('show');
 
-    // let namesList = [];
+    function show() {
+        var list = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.interval(500).take(namesList.length).map(i => namesList[i]);
 
-    // function insert(){
-    //     let firstName = document.getElementById("fn").value;
-    //     let lastName = document.getElementById("ln").value;
-    //     let fullName = {
-    //         firstName: firstName,
-    //         lastName: lastName
-    //     };
+        list.subscribe(name => {
+            let box = document.getElementById('box');
+            box.innerHTML = name;
+            console.log(name);
+        });
+    }
 
-    //     namesList.push(fullName);
-    // }
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    // A stream
+    var numbers$ = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.interval(500).take(10).map(i => numbers[i]);
 
-    // function show(){
-    //     var list = Rx.Observable
-    //     .interval(500)
-    //     .take(namesList.length)
-    //     .map(i => namesList[i]);
+    numbers$.subscribe(n => {
+        let box = document.getElementById('array-box');
+        box.innerHTML = n;
+        // console.log(n);
+    });
+};
 
-    //     list.subscribe(name => {
-    //         let box = document.getElementById('box');
-    //         box.innerHTML = name;
-    //         console.log(name);
-    //     });
-    // }
 
-    // var numbers = [1,2,3,4,5,6,7,8,9,10];
-    // // A stream
-    // var numbers$ = Rx.Observable
-    // .interval(500)
-    // .take(10)
-    // .map(i => numbers[i]);
 
-    // numbers$.subscribe(n => {
-    //     let box = document.getElementById('array-box');
-    //     box.innerHTML = n;
-    //     console.log(n);
-    // });
+/***/ }),
+/* 461 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runInput; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
+
+
+const runInput = () => {
+    const input = document.getElementById("input-example");
+    const inputObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(input, "input");
+    console.log("hey");
+    inputObservable.map(event => {
+        return {
+            target: event.target,
+            timestamp: event.timeStamp
+        };
+    }).map(({ target, timestamp }) => {
+        const value = target.value;
+        const letters = value.length;
+        return {
+            value: value,
+            letters: letters,
+            timestamp: timestamp
+        };
+    }).do(data => {
+        data.value = data.value !== '' ? data.value : '-';
+        data.letters = data.letters !== 0 ? data.letters : '-';
+    }).subscribe(({ value, letters, timestamp }) => {
+        const resultInput = document.getElementById('input-result');
+        const lettersInput = document.getElementById('number-letters');
+        const timestampInput = document.getElementById('timestamp');
+
+        resultInput.innerHTML = value;
+        lettersInput.innerHTML = letters;
+        timestampInput.innerHTML = timestamp;
+    });
 };
 
 

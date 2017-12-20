@@ -62,8 +62,9 @@ obs.subscribe(result => {
                         <input class="w3-input w3-border" type="text" placeholder="Text" name="text" id="input-example">
                         <h4>Result</h4>
                         <ul>
-                            <li><span><b>Input result:</b> 0</span></li>
-                            <li><span><b>Number of letters:</b> 0</span></li>
+                            <li><span><b>Input result:</b> <span id="input-result">-</span></span></li>
+                            <li><span><b>Number of letters:</b> <span id="number-letters">-</span></span></li>
+                            <li><span><b>Timestamp:</b> <span id="timestamp">-</span></span></li>
                         </ul>
                     </div>
                 </div>
@@ -202,15 +203,6 @@ function appendGenresToDOM(genre){
                     This Accordion was implemented using RxJS!! :D 
                 </div>
             </section>
-            
-                <!-- <div class="w3-container" id="card">
-                    <div class="w3-panel w3-card" id="1"></div>
-                    <p>Array events: </p>
-                    <div class="w3-panel w3-card-2 w3-light-gray" id="2"></div>
-                    <div class="w3-panel w3-card-4" id="3"></div>
-                </div>
-                <div id="box"></div>
-                <div id="container"></div>     -->
             
         </div>
 
