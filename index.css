@@ -56,3 +56,15 @@ li {
 li span {
     color: black;
 }
+
+#datastructure-example-form {
+    width: 25em;
+    padding: 1.5em;
+    margin: 0 auto;
+    margin-bottom: 2em;
+}
+
+#show, #collection-box {
+    margin: 0 auto;
+    width: 25em;
+}
