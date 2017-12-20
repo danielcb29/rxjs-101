@@ -74,7 +74,20 @@ obs.subscribe(result => {
                     RxJS from data structure event
                 </div>
                 <div class="example-content">
-                    Hi!  
+                    <div id="array-box" class="w3-card-4">
+                        <form class="w3-container">
+                            <p>      
+                            <label class="w3-text-brown"><b>First Name</b></label>
+                            <input class="w3-input w3-border w3-sand" name="first" type="text" id='fn'></p>
+                            <p>      
+                            <label class="w3-text-brown"><b>Last Name</b></label>
+                            <input class="w3-input w3-border w3-sand" name="last" type="text" id='ln'></p>
+                            <p>
+                            <button class="w3-btn w3-brown" onclick="insert()" id="register">Register</button></p>
+                            <button class="w3-btn w3-brown" onclick="show()" id="show">Show</button></p>
+                        </form>
+                    </div>
+                    <div id="box"></div>
                 </div>
             </section>
 
