@@ -25695,53 +25695,63 @@ const runApiExample = () => {
 
 
 const runArrayExample = () => {
-    var customerName = prompt("Please enter your name", "<name goes here>");
+    let btnRegister = document.getElementById('register');
+    let btnShow = document.getElementById('show');
+    let namesList = [];
 
-    if (customerName != null) {
+    let input = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(btnRegister, 'click');
+    input.subscribe(response => {
+        let firstName = document.getElementById("fn").value;
+        let lastName = document.getElementById("ln").value;
+        let fullName = {
+            firstName: firstName,
+            lastName: lastName
+        };
 
-        document.getElementById("box").innerHTML = "Hello " + customerName + "! How are you today?";
+        namesList.push(fullName);
+
+        document.getElementById("fn").value = '';
+        document.getElementById("ln").value = '';
+
+        showList();
+    });
+
+    //let output = Rx.Observable.fromEvent(btnShow, 'click');
+    function showList() {
+        //output.subscribe(response => {
+        var list = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.interval(500).take(namesList.length).map(i => namesList[i]);
+
+        var box = document.getElementById('collection-box');
+        box = removeAllChildrenFromNode(box);
+
+        list.subscribe(name => {
+            console.log(name);
+            appendNamesToDOM(name, box);
+        });
+        //});
     }
-    // let btnRegister = document.getElementById('register');
-    // let btnShow = document.getElementById('show');
 
-    // let namesList = [];
+    function toTemplate(name) {
+        var a = document.createElement("a");
+        a.textContent = name.firstName + ' ' + name.lastName;
+        a.style.color = "#de0790";
+        var div = document.createElement("div");
+        div.appendChild(a);
+        return div;
+    }
 
-    // function insert(){
-    //     let firstName = document.getElementById("fn").value;
-    //     let lastName = document.getElementById("ln").value;
-    //     let fullName = {
-    //         firstName: firstName,
-    //         lastName: lastName
-    //     };
+    function appendNamesToDOM(name, box) {
+        var t = toTemplate(name);
+        box.appendChild(t);
+    }
 
-    //     namesList.push(fullName);
-    // }
-
-    // function show(){
-    //     var list = Rx.Observable
-    //     .interval(500)
-    //     .take(namesList.length)
-    //     .map(i => namesList[i]);
-
-    //     list.subscribe(name => {
-    //         let box = document.getElementById('box');
-    //         box.innerHTML = name;
-    //         console.log(name);
-    //     });
-    // }
-
-    // var numbers = [1,2,3,4,5,6,7,8,9,10];
-    // // A stream
-    // var numbers$ = Rx.Observable
-    // .interval(500)
-    // .take(10)
-    // .map(i => numbers[i]);
-
-    // numbers$.subscribe(n => {
-    //     let box = document.getElementById('array-box');
-    //     box.innerHTML = n;
-    //     console.log(n);
-    // });
+    function removeAllChildrenFromNode(node) {
+        var shell = node.cloneNode(false);
+        if (node.parentNode) {
+            node.parentNode.replaceChild(shell, node);
+        }
+        return shell;
+    }
 };
 
 

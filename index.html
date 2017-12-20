@@ -74,20 +74,84 @@ obs.subscribe(result => {
                     RxJS from data structure event
                 </div>
                 <div class="example-content">
-                    <div id="array-box" class="w3-card-4">
-                        <form class="w3-container">
+                    <div class="code" style="width:50%">                    
+                        <pre class="prettyprint lang-js">
+                            <code >
+                            
+let btnRegister = document.getElementById('register');
+let btnShow = document.getElementById('show');
+let namesList = [];
+
+let input = Rx.Observable.fromEvent(btnRegister, 'click');
+input.subscribe(response => {
+    let firstName = document.getElementById("fn").value;
+    let lastName = document.getElementById("ln").value;
+    let fullName = {
+        firstName: firstName,
+        lastName: lastName
+    };
+    namesList.push(fullName);
+    document.getElementById("fn").value = '';
+    document.getElementById("ln").value = '';
+    showList();
+});
+
+function showList(){
+    var list = Rx.Observable
+    .interval(500)
+    .take(namesList.length)
+    .map(i => namesList[i]);
+
+    var box = document.getElementById('collection-box');
+    box = removeAllChildrenFromNode(box);
+
+    list.subscribe(name => {
+        console.log(name);
+        appendNamesToDOM(name, box);
+    });
+}
+
+function toTemplate(name){
+    var a = document.createElement("a");
+    a.textContent = name.firstName + ' ' + name.lastName;
+    a.style.color = "#de0790";
+    var div = document.createElement("div");
+    div.appendChild(a);
+    return div;
+}
+
+function appendNamesToDOM(name, box){
+    var t = toTemplate(name);
+    box.appendChild(t);
+}
+
+function removeAllChildrenFromNode(node){
+    var shell = node.cloneNode(false);
+    if (node.parentNode) {
+        node.parentNode.replaceChild(shell, node);
+    }
+    return shell;
+}
+                            </code>
+                        </pre>                 
+                    </div>
+                    <div class="interaction">
+                        <div class="w3-card-4" style="width:50%; margin: 0 auto;">
                             <p>      
                             <label class="w3-text-brown"><b>First Name</b></label>
-                            <input class="w3-input w3-border w3-sand" name="first" type="text" id='fn'></p>
+                            <input class="w3-input w3-border w3-sand" style="width:90%; margin: 0 auto;" name="first" type="text" id='fn'></p>
                             <p>      
                             <label class="w3-text-brown"><b>Last Name</b></label>
-                            <input class="w3-input w3-border w3-sand" name="last" type="text" id='ln'></p>
+                            <input class="w3-input w3-border w3-sand" style="width:90%; margin: 0 auto;" name="last" type="text" id='ln'></p>
                             <p>
-                            <button class="w3-btn w3-brown" onclick="insert()" id="register">Register</button></p>
-                            <button class="w3-btn w3-brown" onclick="show()" id="show">Show</button></p>
-                        </form>
+                            <div class="w3-center">
+                                <button class="w3-btn w3-brown w3-round-large" id="register">Register</button></p>
+                            </div>
+                            </p>
+                        </div>
+                        <div class="w3-container w3-block w3-purple w3-round-large w3-hover-pink w3-center" style="width:50%; margin: 0 auto;" id="show"><p>Registerd Names</p></div>
+                        <div class="w3-container w3-card w3-round-large" style="width:50%; margin: 0 auto;" id="collection-box"></div>
                     </div>
-                    <div id="box"></div>
                 </div>
             </section>
 
@@ -202,16 +266,6 @@ function appendGenresToDOM(genre){
                     This Accordion was implemented using RxJS!! :D 
                 </div>
             </section>
-            
-                <!-- <div class="w3-container" id="card">
-                    <div class="w3-panel w3-card" id="1"></div>
-                    <p>Array events: </p>
-                    <div class="w3-panel w3-card-2 w3-light-gray" id="2"></div>
-                    <div class="w3-panel w3-card-4" id="3"></div>
-                </div>
-                <div id="box"></div>
-                <div id="container"></div>     -->
-            
         </div>
 
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>        
