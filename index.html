@@ -171,9 +171,10 @@ for(var i=0; i < text.length; i++){
                             <code >
                             
 let btnViewGenres = document.querySelector('.view-genres');
+const apiUrl = 'https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US';
 let requests$ = Rx.Observable
         .fromEvent(btnViewGenres, 'click')
-        .map( _ => 'https://api.themoviedb.org/3/genre/movie/list?api_key=76f6b14f3a0fd2ed9f79af9b6db27612&language=en-US');
+        .map( _ => apiUrl);
 let responses$ = requests$
         .flatMap(url => Rx.Observable.fromPromise(fetch(url)))
         .flatMap(r => Rx.Observable.fromPromise(r.json()));
