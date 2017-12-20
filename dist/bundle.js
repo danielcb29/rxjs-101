@@ -25741,7 +25741,7 @@ const runArrayExample = () => {
     numbers$.subscribe(n => {
         let box = document.getElementById('array-box');
         box.innerHTML = n;
-        // console.log(n);
+        console.log(n);
     });
 };
 
@@ -25760,19 +25760,12 @@ const runArrayExample = () => {
 const runInput = () => {
     const input = document.getElementById("input-example");
     const inputObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(input, "input");
-    console.log("hey");
-    inputObservable.map(event => {
-        return {
-            target: event.target,
-            timestamp: event.timeStamp
-        };
-    }).map(({ target, timestamp }) => {
+    inputObservable.map(event => event.target).map(target => {
         const value = target.value;
         const letters = value.length;
         return {
             value: value,
-            letters: letters,
-            timestamp: timestamp
+            letters: letters
         };
     }).do(data => {
         data.value = data.value !== '' ? data.value : '-';
@@ -25780,11 +25773,9 @@ const runInput = () => {
     }).subscribe(({ value, letters, timestamp }) => {
         const resultInput = document.getElementById('input-result');
         const lettersInput = document.getElementById('number-letters');
-        const timestampInput = document.getElementById('timestamp');
 
         resultInput.innerHTML = value;
         lettersInput.innerHTML = letters;
-        timestampInput.innerHTML = timestamp;
     });
 };
 
