@@ -1,14 +1,16 @@
 import Rx from 'rxjs/Rx';
 
-function Person(name) {
-    let _name = name;
+const runCallback = () => {
 
-    this.getName = function() {
-        return _name;
+    function getRandom() {
+        let n = parseInt(Math.random() * 10);
+        while( n>0 ){
+            return n;
+        }
+
     }
-}
 
-let daniel = new Person('Daniel');
+}
 
 let getName = Rx.Observable.fromCallback(daniel.getName);
 
