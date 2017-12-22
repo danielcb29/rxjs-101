@@ -5,7 +5,7 @@ import { runApiExample } from './api';
 import { runArrayExample } from './array';
 import { runInput } from './input';
 import { runPromise } from './promise';
-
+import { runCallback } from './callback';
 
 initAccordion();
 runHelloWorld();
@@ -14,3 +14,4 @@ runMouseEvent();
 runApiExample();
 runArrayExample();
 runPromise();
+runCallback();
