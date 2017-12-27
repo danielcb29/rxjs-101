@@ -2,55 +2,51 @@ import Rx from 'rxjs/Rx';
 
 const runCallback = () => {
 
-    function Lunch() {
+    let meal = null;
+    let juice = null;
 
-        let meal = null;
-
-        this.selectMeal = (newMeal ,doLogic) => {
-            meal = newMeal;
-            // selectJuice(newMeal);
-        }
-
-        this.getMeal = () => {  
-            return meal;
-        }
-
-
+    function appendFoodToMenu(type, food) {
+        const span = document.getElementById(`${type}-option`);
+        span.innerHTML = food;
     }
 
-    // const someFunction = callback => callback(5, 's', {a: 'a'});
+    function selectMeal(appendFunction){
+        appendFunction('meal', meal);
+    }
 
-    // someFunction((a, b, c) => {
-    //     console.log(a); // 5
-    //     console.log(b); // 'some string'
-    //     console.log(c); // {someProperty: 'someValue'}
-    // });
+    function selectJuice(appendFunction){
+        appendFunction('juice', juice);
+    }
+    
+    const boundSelectMeal = Rx.Observable.bindCallback(selectMeal);
+    const boundSelectJuice = Rx.Observable.bindCallback(selectJuice);
 
-    // const boundSomeFunction = Rx.Observable.bindCallback(someFunction);
-    // console.log(boundSomeFunction());
-    // boundSomeFunction().subscribe(values => {
-    //     console.log(values) // [5, 'some string', {someProperty: 'someValue'}]
-    // });
+    const mealSelector = document.getElementById('meal-selector');
+    const juiceSelector = document.getElementById('juice-selector');
 
-    const currentLunch = new Lunch();
-    const selectMeal = Rx.Observable.bindCallback(currentLunch.selectMeal);
-    let mealObservable = selectMeal();
-
-    const mealSelector = document.getElementById('meal-selector')
     Rx.Observable.fromEvent(mealSelector, 'change')
         .map(event => event.target.options[event.target.selectedIndex].value )
-        .subscribe(meal => {
-            console.log(meal);
-            currentLunch.selectMeal(meal);
-            mealObservable = selectMeal(meal);
+        .subscribe(newMeal => {
+            meal = newMeal;
+            selectMeal(appendFoodToMenu);
+            const mealObservable = boundSelectMeal();
+            mealObservable
+                .subscribe(data => {
+                    console.log('Callback binded to Obsevable', data);
+                });
+        });
 
-        })
-
-    mealObservable.subscribe(meal => {
-        console.log('in');
-        console.log(meal);
-    });
-      
+    Rx.Observable.fromEvent(juiceSelector, 'change')
+        .map(event => event.target.options[event.target.selectedIndex].value )
+        .subscribe(newJuice => {
+            juice = newJuice;
+            selectJuice(appendFoodToMenu);
+            const juiceObservable = boundSelectJuice();
+            juiceObservable
+                .subscribe(data => {
+                    console.log('Callback binded to Obsevable');
+                });
+        });
 }
 
 export {
