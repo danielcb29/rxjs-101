@@ -151,13 +151,13 @@ Rx.Observable.fromEvent(btnRegister, "click")
                         <pre class="prettyprint lang-js">
                             <code >
                             
-var mouseMove = Rx.Observable.fromEvent(document, "mousemove");
-var text = "RxJs experiment";
-var container = document.getElementById('mouseEvent-container');
+const mouseMove = Rx.Observable.fromEvent(document, "mousemove");
+const text = "RxJs experiment";
+const container = document.getElementById("mouseEvent-container");
 
-for(var i=0; i < text.length; i++){
+for(let i=0; i < text.length; i++){
     (function(i){
-        var s = document.createElement("span");
+        let s = document.createElement("span");
         s.innerHTML = text.charAt(i);
         s.style.position = "absolute";
         s.style.color = "#191970";
