@@ -95,61 +95,30 @@ observable
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
-                            
-let btnRegister = document.getElementById('register');
-let btnShow = document.getElementById('show');
-let namesList = [];
+const btnRegister = document.getElementById("register");
+const boxNames = document.getElementById("collection-box");
+const namesList = [];
 
-let input = Rx.Observable.fromEvent(btnRegister, 'click');
-input.subscribe(response => {
-    let firstName = document.getElementById("fn").value;
-    let lastName = document.getElementById("ln").value;
-    let fullName = {
-        firstName: firstName,
-        lastName: lastName
-    };
-    namesList.push(fullName);
-    document.getElementById("fn").value = '';
-    document.getElementById("ln").value = '';
-    showList();
-});
+const namesObservable = Rx.Observable.from(namesList).last();
 
-function showList(){
-    var list = Rx.Observable
-    .interval(500)
-    .take(namesList.length)
-    .map(i => namesList[i]);
+const firstNameInput = document.getElementById("fn");
+const lastNameInput = document.getElementById("ln");
+                                
+Rx.Observable.fromEvent(btnRegister, "click")
+    .map(event => `${firstNameInput.value} ${lastNameInput.value}`)
+    .do(fullName => {
+        firstNameInput.value = '';
+        lastNameInput.value = '';
+    })
+    .subscribe(fullName => {
+        namesList.push(fullName);
 
-    var box = document.getElementById('collection-box');
-    box = removeAllChildrenFromNode(box);
-
-    list.subscribe(name => {
-        console.log(name);
-        appendNamesToDOM(name, box);
+        namesObservable.subscribe(lastNameAdded => {
+            const li = document.createElement("li");
+            li.innerHTML = lastNameAdded;
+            boxNames.appendChild(li);
+        })
     });
-}
-
-function toTemplate(name){
-    var a = document.createElement("a");
-    a.textContent = name.firstName + ' ' + name.lastName;
-    a.style.color = "#de0790";
-    var div = document.createElement("div");
-    div.appendChild(a);
-    return div;
-}
-
-function appendNamesToDOM(name, box){
-    var t = toTemplate(name);
-    box.appendChild(t);
-}
-
-function removeAllChildrenFromNode(node){
-    var shell = node.cloneNode(false);
-    if (node.parentNode) {
-        node.parentNode.replaceChild(shell, node);
-    }
-    return shell;
-}
                             </code>
                         </pre>                 
                     </div>
@@ -168,7 +137,7 @@ function removeAllChildrenFromNode(node){
                             </p>
                         </div>
                         <div class="w3-container w3-block w3-purple w3-round-large w3-hover-pink w3-center" id="show"><p>Registerd Names</p></div>
-                        <div class="w3-container w3-card w3-round-large" id="collection-box"></div>
+                        <ul class="w3-container w3-card w3-round-large" id="collection-box"></ul>
                     </div>
                 </div>
             </section>

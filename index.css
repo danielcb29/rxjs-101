@@ -68,3 +68,7 @@ li span {
     margin: 0 auto;
     width: 25em;
 }
+
+#collection-box {
+    list-style-type: none;
+}

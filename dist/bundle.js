@@ -25704,63 +25704,27 @@ const runApiExample = () => {
 
 
 const runArrayExample = () => {
-    let btnRegister = document.getElementById('register');
-    let btnShow = document.getElementById('show');
-    let namesList = [];
+  const btnRegister = document.getElementById("register");
+  const boxNames = document.getElementById("collection-box");
+  const namesList = [];
 
-    let input = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(btnRegister, 'click');
-    input.subscribe(response => {
-        let firstName = document.getElementById("fn").value;
-        let lastName = document.getElementById("ln").value;
-        let fullName = {
-            firstName: firstName,
-            lastName: lastName
-        };
+  const namesObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.from(namesList).last();
 
-        namesList.push(fullName);
+  const firstNameInput = document.getElementById("fn");
+  const lastNameInput = document.getElementById("ln");
 
-        document.getElementById("fn").value = '';
-        document.getElementById("ln").value = '';
+  __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(btnRegister, "click").map(event => `${firstNameInput.value} ${lastNameInput.value}`).do(fullName => {
+    firstNameInput.value = "";
+    lastNameInput.value = "";
+  }).subscribe(fullName => {
+    namesList.push(fullName);
 
-        showList();
+    namesObservable.subscribe(lastNameAdded => {
+      const li = document.createElement("li");
+      li.innerHTML = lastNameAdded;
+      boxNames.appendChild(li);
     });
-
-    //let output = Rx.Observable.fromEvent(btnShow, 'click');
-    function showList() {
-        //output.subscribe(response => {
-        var list = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.interval(500).take(namesList.length).map(i => namesList[i]);
-
-        var box = document.getElementById('collection-box');
-        box = removeAllChildrenFromNode(box);
-
-        list.subscribe(name => {
-            console.log(name);
-            appendNamesToDOM(name, box);
-        });
-        //});
-    }
-
-    function toTemplate(name) {
-        var a = document.createElement("a");
-        a.textContent = name.firstName + ' ' + name.lastName;
-        a.style.color = "#de0790";
-        var div = document.createElement("div");
-        div.appendChild(a);
-        return div;
-    }
-
-    function appendNamesToDOM(name, box) {
-        var t = toTemplate(name);
-        box.appendChild(t);
-    }
-
-    function removeAllChildrenFromNode(node) {
-        var shell = node.cloneNode(false);
-        if (node.parentNode) {
-            node.parentNode.replaceChild(shell, node);
-        }
-        return shell;
-    }
+  });
 };
 
 
