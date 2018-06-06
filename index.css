@@ -1,12 +1,17 @@
-#rxjs-example {
+.page {
     margin: 15px;
 }
 
-#rxjs-example h2 {
+.page__title {
+    padding-bottom: 20px; 
     text-align: center;
 }
 
-.example-title {
+.page__image {
+    margin-right: 15px;
+}
+
+.example__title {
     background-color: #de0790;
     color: white;
     padding: 10px;
@@ -14,11 +19,11 @@
     cursor: pointer;
 }
 
-.active, .example-title:hover {
+.active, .example__title:hover {
     background-color: #9e018f;
 }
 
-.example-content {
+.example__content {
     padding: 25px;
     background-color: #fcfcfc;
     display: none;
@@ -45,15 +50,11 @@
     padding: 25px;
 }
 
-div pre.prettyprint {
-    border: none;
-}
-
-li {
+.result {
     color: #9e018f;
 }
 
-li span {
+.result__title {
     color: black;
 }
 
@@ -71,4 +72,9 @@ li span {
 
 #collection-box {
     list-style-type: none;
+}
+
+/* Hack needed to remove border in prettyprint container */
+div pre.prettyprint {
+    border: none;
 }

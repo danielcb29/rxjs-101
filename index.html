@@ -4,19 +4,19 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="index.css">
-        <title>Sample</title>
+        <title>RXJS 101</title>
     </head>
     <body>
-        <div id="rxjs-example">
-            <h2>
-                <img src="./assets/rxjs.png" />
+        <div class="page">
+            <h2 class="page__title">
+                <img class="page__image" src="./assets/rxjs.png" />
                 RxJS Code Examples
             </h2>
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS Hello World
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -38,11 +38,11 @@ obs.subscribe(result => {
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from input event
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -80,18 +80,18 @@ observable
                         <input class="w3-input w3-border" type="text" placeholder="Text" name="text" id="input-example">
                         <h4>Result</h4>
                         <ul>
-                            <li><span><b>Input result:</b> <span id="input-result">-</span></span></li>
-                            <li><span><b>Number of letters:</b> <span id="number-letters">-</span></span></li>
+                            <li class="result"><span class="result__title"><b>Input result:</b> <span id="input-result">-</span></span></li>
+                            <li class="result"><span class="result__title"><b>Number of letters:</b> <span id="number-letters">-</span></span></li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from data structure event
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -142,11 +142,11 @@ Rx.Observable.fromEvent(btnRegister, "click")
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from mouse event
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -176,11 +176,11 @@ for(let i=0; i < text.length; i++){
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from Callback
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -223,8 +223,8 @@ const boundSelectJuice = Rx.Observable.bindCallback(selectJuice);
                         <div id="lunch-order">
                             <h4>Your lunch order</h4>
                             <ul id="lunch-list">
-                                <li>Meal: <span id="meal-option">You didn't select a meal</span></li>
-                                <li>Juice: <span id="juice-option">You didn't select a juice</span></li>
+                                <li class="result">Meal: <span id="meal-option">You didn't select a meal</span></li>
+                                <li class="result">Juice: <span id="juice-option">You didn't select a juice</span></li>
                             </ul>
                         </div>
                         <div>
@@ -248,11 +248,11 @@ const boundSelectJuice = Rx.Observable.bindCallback(selectJuice);
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from basic Promise
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">
                         <pre class="prettyprint lang-js">
                             <code>
@@ -289,8 +289,8 @@ observable.subscribe(
                             
                             <div class="w3-panel w3-card" id="promise-result" style="display: none">
                                 <ul>
-                                    <li><span>You got!!</span> </li>
-                                    <li><span>You clicked: times</span> </li>
+                                    <li class="result"><span class="result__title">You got!!</span> </li>
+                                    <li class="result"><span class="result__title">You clicked: times</span> </li>
                                 </ul>
                             </div>
                         </div>
@@ -299,11 +299,11 @@ observable.subscribe(
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from API request
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">                    
                         <pre class="prettyprint lang-js">
                             <code >
@@ -351,11 +351,11 @@ function appendGenresToDOM(genre){
                 </div>
             </section>
 
-            <section>
-                <div class="example-title">
+            <section class="example">
+                <div class="example__title">
                     RxJS from ... any implementation
                 </div>
-                <div class="example-content">
+                <div class="example__content">
                     <div class="code">
                         <pre class="prettyprint lang-js">
                             <code >
@@ -392,11 +392,11 @@ observable
                         <h3>This Accordion was implemented using RxJS!! :D</h3>
                         <p>This accordion uses RxJS to handle click envents and show or dismiss content blocks</p>
                         <ol>
-                            <li><span>Catch event</span></li>
-                            <li><span>Define if is currently active or not</span></li>
-                            <li><span>Change element class</span></li>
-                            <li><span>Get next element (content)</span></li>
-                            <li><span>Change display property of the event</span></li>
+                            <li class="result"><span class="result__title">Catch event</span></li>
+                            <li class="result"><span class="result__title">Define if is currently active or not</span></li>
+                            <li class="result"><span class="result__title">Change element class</span></li>
+                            <li class="result"><span class="result__title">Get next element (content)</span></li>
+                            <li class="result"><span class="result__title">Change display property of the event</span></li>
                         </ol>
                     </div>
                 </div>

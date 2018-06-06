@@ -2,14 +2,14 @@
 
 This is a base project to practice RxJS. The idea is use some RxJS operators to understand how it works.  
 
-# How it looks: 
+### How it looks: 
 
 TBD
 
-# Motivation
+## Motivation
 
 The main motivation behind this project is try to understand this new and trendy topic.
 
-# Contribution
+## Contribution
 
 PRs are welcome

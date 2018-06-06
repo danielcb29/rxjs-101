@@ -14475,7 +14475,7 @@ Object(__WEBPACK_IMPORTED_MODULE_7__callback__["a" /* runCallback */])();
 
 
 const initAccordion = () => {
-  const accordionHeader = document.getElementsByClassName("example-title");
+  const accordionHeader = document.querySelectorAll(".example__title");
   const accordionObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
   accordionObservable.map(event => event.target).map(target => {
     const isActive = target.classList.contains("active");

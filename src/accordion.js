@@ -1,7 +1,7 @@
 import Rx from "rxjs/Rx";
 
 const initAccordion = () => {
-  const accordionHeader = document.getElementsByClassName("example-title");
+  const accordionHeader = document.querySelectorAll(".example__title");
   const accordionObservable = Rx.Observable.fromEvent(accordionHeader, "click");
   accordionObservable
     .map(event => event.target)
