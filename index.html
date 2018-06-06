@@ -12,31 +12,7 @@
                 <img class="page__image" src="./assets/rxjs.png" />
                 RxJS Code Examples
             </h2>
-            <section class="example">
-                <div class="example__title">
-                    RxJS Hello World
-                </div>
-                <div class="example__content">
-                    <div class="code">                    
-                        <pre class="prettyprint lang-js">
-                            <code >
-                            
-const obs = Rx.Observable.create(observer => {
-    observer.next('Hello World');
-});
-
-obs.subscribe(result => {
-    console.log(result);
-}); 
-                            </code>
-                        </pre>                 
-                    </div>
-                    <div class="interaction">
-                        <h3>Observable Hello World</h3>
-                        <div class="w3-panel w3-card" id="helloworld-box"></div>
-                    </div>
-                </div>
-            </section>
+            <section id="helloworld"></section>
 
             <section class="example">
                 <div class="example__title">

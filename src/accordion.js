@@ -1,24 +1,25 @@
 import Rx from "rxjs/Rx";
 
+const ACTIVE_CLASS = 'active';
+
 const initAccordion = () => {
   const accordionHeader = document.querySelectorAll(".example__title");
   const accordionObservable = Rx.Observable.fromEvent(accordionHeader, "click");
   accordionObservable
-    .map(event => event.target)
-    .map(target => {
-      const isActive = target.classList.contains("active");
+    .map(({ target }) => {
+      const isActive = target.classList.contains(ACTIVE_CLASS);
       const display = isActive ? "none" : "flex";
       return {
         isActive: isActive,
-        target: target,
-        display: display
+        target,
+        display
       };
     })
     .do(({ target, isActive }) => {
       if (isActive) {
-        target.classList.remove("active");
+        target.classList.remove(ACTIVE_CLASS);
       } else {
-        target.classList.toggle("active");
+        target.classList.toggle(ACTIVE_CLASS);
       }
     })
     .do(

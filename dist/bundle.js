@@ -14455,7 +14455,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-Object(__WEBPACK_IMPORTED_MODULE_0__accordion__["a" /* initAccordion */])();
 Object(__WEBPACK_IMPORTED_MODULE_1__helloworld__["a" /* runHelloWorld */])();
 Object(__WEBPACK_IMPORTED_MODULE_5__input__["a" /* runInput */])();
 Object(__WEBPACK_IMPORTED_MODULE_2__mouseEvent__["a" /* runMouseEvent */])();
@@ -14463,6 +14462,7 @@ Object(__WEBPACK_IMPORTED_MODULE_3__api__["a" /* runApiExample */])();
 Object(__WEBPACK_IMPORTED_MODULE_4__array__["a" /* runArrayExample */])();
 Object(__WEBPACK_IMPORTED_MODULE_6__promise__["a" /* runPromise */])();
 Object(__WEBPACK_IMPORTED_MODULE_7__callback__["a" /* runCallback */])();
+Object(__WEBPACK_IMPORTED_MODULE_0__accordion__["a" /* initAccordion */])();
 
 /***/ }),
 /* 161 */
@@ -14474,22 +14474,24 @@ Object(__WEBPACK_IMPORTED_MODULE_7__callback__["a" /* runCallback */])();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
 
 
+const ACTIVE_CLASS = 'active';
+
 const initAccordion = () => {
   const accordionHeader = document.querySelectorAll(".example__title");
   const accordionObservable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(accordionHeader, "click");
-  accordionObservable.map(event => event.target).map(target => {
-    const isActive = target.classList.contains("active");
+  accordionObservable.map(({ target }) => {
+    const isActive = target.classList.contains(ACTIVE_CLASS);
     const display = isActive ? "none" : "flex";
     return {
       isActive: isActive,
-      target: target,
-      display: display
+      target,
+      display
     };
   }).do(({ target, isActive }) => {
     if (isActive) {
-      target.classList.remove("active");
+      target.classList.remove(ACTIVE_CLASS);
     } else {
-      target.classList.toggle("active");
+      target.classList.toggle(ACTIVE_CLASS);
     }
   }).do(targetOptions => targetOptions.target = targetOptions.target.nextElementSibling).subscribe(({ target, display }) => {
     target.style.display = display;
@@ -25599,15 +25601,53 @@ exports.zipAll = zipAll_1.zipAll;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
 
 
-const runHelloWorld = () => {
+const HELLOWORLD_ID = 'helloworld';
+const HELLOWORLD_BOX_ID = 'helloworld-box';
+
+const helloWorldTemplate = `
+    <div class="example__title">
+        RxJS Hello World
+    </div>
+    <div class="example__content">
+        <div class="code">                    
+            <pre class="prettyprint lang-js">
+                <code >     
+const obs = Rx.Observable.create(observer => {
+    observer.next('Hello World');
+});
+
+obs.subscribe(result => {
+    console.log(result);
+}); 
+                </code>
+            </pre>                 
+        </div>
+        <div class="interaction">
+            <h3>Observable Hello World</h3>
+            <div class="w3-panel w3-card" id="${HELLOWORLD_BOX_ID}"></div>
+        </div>
+    </div>
+`;
+
+const renderHelloWorld = () => {
+    const section = document.getElementById(HELLOWORLD_ID);
+    section.innerHTML = helloWorldTemplate;
+};
+
+const subscribeHelloWorld = () => {
     const observable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.create(observer => {
         observer.next('Hello World');
     });
 
     observable.subscribe(result => {
-        let box = document.getElementById('helloworld-box');
+        const box = document.getElementById(HELLOWORLD_BOX_ID);
         box.innerHTML = result;
     });
+};
+
+const runHelloWorld = () => {
+    renderHelloWorld();
+    subscribeHelloWorld();
 };
 
 
