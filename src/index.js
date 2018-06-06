@@ -1,11 +1,11 @@
-import { initAccordion } from './accordion';
-import { runHelloWorld } from './helloworld';
-import { runMouseEvent } from './mouseEvent';
-import { runApiExample } from './api';
-import { runArrayExample } from './array';
-import { runInput } from './input';
-import { runPromise } from './promise';
-import { runCallback } from './callback';
+import { initAccordion } from './components/accordion';
+import { runHelloWorld } from './components/helloworld';
+import { runMouseEvent } from './components/mouseEvent';
+import { runApiExample } from './components/api';
+import { runArrayExample } from './components/array';
+import { runInput } from './components/input';
+import { runPromise } from './components/promise';
+import { runCallback } from './components/callback';
 
 runHelloWorld();
 runInput();

@@ -13,55 +13,7 @@
                 RxJS Code Examples
             </h2>
             <section id="helloworld"></section>
-
-            <section class="example">
-                <div class="example__title">
-                    RxJS from input event
-                </div>
-                <div class="example__content">
-                    <div class="code">                    
-                        <pre class="prettyprint lang-js">
-                            <code >
-                            
-const observable = Rx.Observable.fromEvent(input, "input");
-observable
-    .map(event => event.target)
-    .map(target => {
-        // Take important information of the target
-        const value = target.value;
-        const letters = value.length;
-        return {
-            value: value,
-            letters: letters,
-        }
-    })
-    .do(data => {
-        // Some validations :)
-        data.value = data.value !== '' ? data.value : '-';
-        data.letters = data.letters !== 0 ? data.letters : '-';
-    })
-    .subscribe(( { value, letters, timestamp } ) => {
-        // Change the result elements
-        const resultInput = document.getElementById('input-result');
-        const lettersInput = document.getElementById('number-letters');
-
-        resultInput.innerHTML = value;
-        lettersInput.innerHTML = letters;
-    });
-                            </code>
-                        </pre>                 
-                    </div>
-                    <div class="interaction">
-                        <h3>Observable of input event</h3>
-                        <input class="w3-input w3-border" type="text" placeholder="Text" name="text" id="input-example">
-                        <h4>Result</h4>
-                        <ul>
-                            <li class="result"><span class="result__title"><b>Input result:</b> <span id="input-result">-</span></span></li>
-                            <li class="result"><span class="result__title"><b>Number of letters:</b> <span id="number-letters">-</span></span></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <section id="input-event"></section>
 
             <section class="example">
                 <div class="example__title">

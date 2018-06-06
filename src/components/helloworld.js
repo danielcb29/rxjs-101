@@ -1,3 +1,4 @@
+import render from './../utils/render'; 
 import Rx from 'rxjs/Rx';
 
 const HELLOWORLD_ID = 'helloworld';
@@ -28,11 +29,6 @@ obs.subscribe(result => {
     </div>
 `;
 
-const renderHelloWorld = () => {
-    const section = document.getElementById(HELLOWORLD_ID);
-    section.innerHTML = helloWorldTemplate;
-}
-
 const subscribeHelloWorld = () => {
     const observable = Rx.Observable.create(observer => {
         observer.next('Hello World');
@@ -45,7 +41,7 @@ const subscribeHelloWorld = () => {
 }
 
 const runHelloWorld = () => {
-    renderHelloWorld();
+    render(HELLOWORLD_ID, helloWorldTemplate);
     subscribeHelloWorld();
 }
 
