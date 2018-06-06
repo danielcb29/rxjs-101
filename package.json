@@ -9,20 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.autodesk.com:t-corrda/rxjs-example-code.git"
+    "url": ""
   },
   "keywords": [
     "RxJS"
   ],
-  "author": "Daniel Correa <daniel.correa@autodesk.com>",
+  "author": "Daniel Correa <danielc.web@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "rxjs": "^5.5.5"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
   }
