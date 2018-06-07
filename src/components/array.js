@@ -20,7 +20,6 @@ Rx.Observable.fromEvent(btnRegister, "click")
   })
   .subscribe(fullName => {
     namesList.push(fullName);
-
     namesObservable.subscribe(lastNameAdded => {
       const li = document.createElement("li");
       li.innerHTML = lastNameAdded;
