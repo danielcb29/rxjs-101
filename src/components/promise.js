@@ -1,7 +1,58 @@
+import render from './../utils/render'; 
 import Rx from "rxjs/Rx";
 import { timeInterval } from "rxjs/operator/timeInterval";
 
-const runPromise = () => {
+const PROMISE_ID = 'promise';
+
+const promiseTemplate = `
+  <div class="example__title">
+    RxJS from basic Promise
+  </div>
+  <div class="example__content">
+    <div class="code">
+      <pre class="prettyprint lang-js">
+        <code>
+const promise = new Promise((resolve, reject) => {
+  const random = parseInt(Math.random() * 10);
+  if (random === 0) {
+    reject(random);
+  }
+  resolve(random);
+});
+const observable = Rx.Observable.fromPromise(promise);
+observable.subscribe(
+  response => {
+    resultElement.innerHTML = response + ': Resolved';
+    resultElement.style.color = 'green';
+    resultImg.setAttribute('src', './assets/yeah.PNG');
+  },
+  error => {
+    resultElement.innerHTML = error + ': Rejected';
+    resultElement.style.color = 'red';
+    resultImg.setAttribute('src', './assets/boo.jpg');
+  }
+);
+        </code>
+      </pre>
+    </div>
+    <div class="interaction">
+      <h3>Observable of random number promise!</h3>
+      <p>Click on the button and see if you got a nice number :) (> 0)</p>
+      <div class="w3-center">
+        <img src="./assets/showMeWhatYouGot.jpg" /> <br/> <br/>
+        <button class="w3-btn w3-brown w3-round-large" id="run-promise">Show me what you got!</button><p></p>    
+        <div class="w3-panel w3-card" id="promise-result" style="display: none">
+          <ul>
+            <li class="result"><span class="result__title">You got!!</span> </li>
+            <li class="result"><span class="result__title">You clicked: times</span> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+
+const subscribePromise = () => {
   const subscribeIt = count => {
     const promise = new Promise((resolve, reject) => {
       const random = parseInt(Math.random() * 10);
@@ -16,7 +67,6 @@ const runPromise = () => {
     const resultImg = document.getElementById('promise-img');
     observable.subscribe(
       response => {
-          
         resultElement.innerHTML = `${response}: Resolved`;
         resultElement.style.color = 'green';
         resultImg.setAttribute('src', './assets/yeah.PNG');
@@ -76,5 +126,10 @@ const runPromise = () => {
       subscribeIt(count);
     });
 };
+
+const runPromise = () => {
+  render(PROMISE_ID, promiseTemplate);
+  subscribePromise();
+}
 
 export { runPromise };

@@ -1729,6 +1729,17 @@ exports.EmptyObservable = EmptyObservable;
 
 /***/ }),
 /* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+/* harmony default export */ __webpack_exports__["a"] = ((sectionId, template) => {
+    const section = document.getElementById(sectionId);
+    section.innerHTML = template;
+});
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1791,17 +1802,6 @@ var MulticastOperator = (function () {
 }());
 exports.MulticastOperator = MulticastOperator;
 //# sourceMappingURL=multicast.js.map
-
-/***/ }),
-/* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-/* harmony default export */ __webpack_exports__["a"] = ((sectionId, template) => {
-    const section = document.getElementById(sectionId);
-    section.innerHTML = template;
-});
 
 /***/ }),
 /* 17 */
@@ -10893,7 +10893,7 @@ function plucker(props, length) {
 "use strict";
 
 var Subject_1 = __webpack_require__(6);
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 /* tslint:enable:max-line-length */
 /**
  * Returns a ConnectableObservable, which is a variety of Observable that waits until its connect method is called
@@ -10923,7 +10923,7 @@ exports.publish = publish;
 "use strict";
 
 var BehaviorSubject_1 = __webpack_require__(118);
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 /**
  * @param value
  * @return {ConnectableObservable<T>}
@@ -10998,7 +10998,7 @@ exports.BehaviorSubject = BehaviorSubject;
 "use strict";
 
 var ReplaySubject_1 = __webpack_require__(38);
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 /* tslint:enable:max-line-length */
 function publishReplay(bufferSize, windowTime, selectorOrScheduler, scheduler) {
     if (selectorOrScheduler && typeof selectorOrScheduler !== 'function') {
@@ -11018,7 +11018,7 @@ exports.publishReplay = publishReplay;
 "use strict";
 
 var AsyncSubject_1 = __webpack_require__(31);
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 function publishLast() {
     return function (source) { return multicast_1.multicast(new AsyncSubject_1.AsyncSubject())(source); };
 }
@@ -11796,7 +11796,7 @@ var SequenceEqualCompareToSubscriber = (function (_super) {
 
 "use strict";
 
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 var refCount_1 = __webpack_require__(55);
 var Subject_1 = __webpack_require__(6);
 function shareSubjectFactory() {
@@ -14481,7 +14481,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__components_accordion__["a" /* initAccordion 
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return initAccordion; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 
@@ -21381,7 +21381,7 @@ Observable_1.Observable.prototype.multicast = multicast_1.multicast;
 
 "use strict";
 
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 /* tslint:enable:max-line-length */
 /**
  * Allows source Observable to be subscribed only once with a Subject of choice,
@@ -25548,7 +25548,7 @@ var mergeScan_1 = __webpack_require__(110);
 exports.mergeScan = mergeScan_1.mergeScan;
 var min_1 = __webpack_require__(111);
 exports.min = min_1.min;
-var multicast_1 = __webpack_require__(15);
+var multicast_1 = __webpack_require__(16);
 exports.multicast = multicast_1.multicast;
 var observeOn_1 = __webpack_require__(33);
 exports.observeOn = observeOn_1.observeOn;
@@ -25667,7 +25667,7 @@ exports.zipAll = zipAll_1.zipAll;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runHelloWorld; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 
@@ -25725,7 +25725,7 @@ const runHelloWorld = () => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runMouseEvent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 
@@ -25842,7 +25842,7 @@ const runApiExample = () => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runArrayExample; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 
@@ -25858,7 +25858,16 @@ const arrayTemplate = `
       <div class="code">                    
           <pre class="prettyprint lang-js">
               <code >
-const namesObservable = Rx.Observable.from(namesList).last();
+const pushArray$ = new Rx.Subject();
+const namesList = [];
+pushArray$
+  .switchMap((names) => Rx.Observable.from(names).last())
+  .subscribe(lastNameAdded => {
+    const li = document.createElement("li");
+    li.innerHTML = lastNameAdded;
+    boxNames.appendChild(li);
+  });
+
 Rx.Observable.fromEvent(btnRegister, "click")
   .map(() => firstNameInput.value + lastNameInput.value)
   .do(() => {
@@ -25867,11 +25876,7 @@ Rx.Observable.fromEvent(btnRegister, "click")
   })
   .subscribe(fullName => {
     namesList.push(fullName);
-    namesObservable.subscribe(lastNameAdded => {
-      const li = document.createElement("li");
-      li.innerHTML = lastNameAdded;
-      boxNames.appendChild(li);
-    });
+    pushArray$.next(namesList);
   });
               </code>
           </pre>                 
@@ -25901,21 +25906,21 @@ const subscribeArray = () => {
   const boxNames = document.getElementById("resultbox");
   const firstNameInput = document.getElementById("firstname");
   const lastNameInput = document.getElementById("lastname");
+  const pushArray$ = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default.a.Subject();
   const namesList = [];
 
-  const namesObservable = __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default.a.Observable.from(namesList).last();
+  pushArray$.switchMap(names => __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default.a.Observable.from(names).last()).subscribe(lastNameAdded => {
+    const li = document.createElement("li");
+    li.innerHTML = lastNameAdded;
+    boxNames.appendChild(li);
+  });
 
   __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default.a.Observable.fromEvent(btnRegister, "click").map(() => `${firstNameInput.value} ${lastNameInput.value}`).do(() => {
     firstNameInput.value = "";
     lastNameInput.value = "";
   }).subscribe(fullName => {
     namesList.push(fullName);
-
-    namesObservable.subscribe(lastNameAdded => {
-      const li = document.createElement("li");
-      li.innerHTML = lastNameAdded;
-      boxNames.appendChild(li);
-    });
+    pushArray$.next(namesList);
   });
 };
 
@@ -25932,7 +25937,7 @@ const runArrayExample = () => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runInput; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 
@@ -26007,14 +26012,66 @@ const runInput = () => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runPromise; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_timeInterval__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_timeInterval___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_timeInterval__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operator_timeInterval__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_operator_timeInterval___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_operator_timeInterval__);
 
 
 
-const runPromise = () => {
+
+const PROMISE_ID = 'promise';
+
+const promiseTemplate = `
+  <div class="example__title">
+    RxJS from basic Promise
+  </div>
+  <div class="example__content">
+    <div class="code">
+      <pre class="prettyprint lang-js">
+        <code>
+const promise = new Promise((resolve, reject) => {
+  const random = parseInt(Math.random() * 10);
+  if (random === 0) {
+    reject(random);
+  }
+  resolve(random);
+});
+const observable = Rx.Observable.fromPromise(promise);
+observable.subscribe(
+  response => {
+    resultElement.innerHTML = response + ': Resolved';
+    resultElement.style.color = 'green';
+    resultImg.setAttribute('src', './assets/yeah.PNG');
+  },
+  error => {
+    resultElement.innerHTML = error + ': Rejected';
+    resultElement.style.color = 'red';
+    resultImg.setAttribute('src', './assets/boo.jpg');
+  }
+);
+        </code>
+      </pre>
+    </div>
+    <div class="interaction">
+      <h3>Observable of random number promise!</h3>
+      <p>Click on the button and see if you got a nice number :) (> 0)</p>
+      <div class="w3-center">
+        <img src="./assets/showMeWhatYouGot.jpg" /> <br/> <br/>
+        <button class="w3-btn w3-brown w3-round-large" id="run-promise">Show me what you got!</button><p></p>    
+        <div class="w3-panel w3-card" id="promise-result" style="display: none">
+          <ul>
+            <li class="result"><span class="result__title">You got!!</span> </li>
+            <li class="result"><span class="result__title">You clicked: times</span> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+
+const subscribePromise = () => {
   const subscribeIt = count => {
     const promise = new Promise((resolve, reject) => {
       const random = parseInt(Math.random() * 10);
@@ -26024,11 +26081,10 @@ const runPromise = () => {
       resolve(random);
     });
 
-    const observable = __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromPromise(promise);
+    const observable = __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default.a.Observable.fromPromise(promise);
     const resultElement = document.getElementById('promise-result-element');
     const resultImg = document.getElementById('promise-img');
     observable.subscribe(response => {
-
       resultElement.innerHTML = `${response}: Resolved`;
       resultElement.style.color = 'green';
       resultImg.setAttribute('src', './assets/yeah.PNG');
@@ -26041,7 +26097,7 @@ const runPromise = () => {
 
   const resultContainer = document.getElementById("promise-result");
   const buttonSubscribe = document.getElementById("run-promise");
-  __WEBPACK_IMPORTED_MODULE_0_rxjs_Rx___default.a.Observable.fromEvent(buttonSubscribe, "click").scan(count => count + 1, 0).do(() => {
+  __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default.a.Observable.fromEvent(buttonSubscribe, "click").scan(count => count + 1, 0).do(() => {
     resultContainer.style.display = "block";
     resultContainer.innerHTML = "Making magic...";
     resultContainer.style.color = '#9e018f';
@@ -26082,6 +26138,11 @@ const runPromise = () => {
   });
 };
 
+const runPromise = () => {
+  Object(__WEBPACK_IMPORTED_MODULE_0__utils_render__["a" /* default */])(PROMISE_ID, promiseTemplate);
+  subscribePromise();
+};
+
 
 
 /***/ }),
@@ -26090,7 +26151,7 @@ const runPromise = () => {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return runCallback; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_render__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Rx__);
 

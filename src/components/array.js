@@ -11,7 +11,16 @@ const arrayTemplate = `
       <div class="code">                    
           <pre class="prettyprint lang-js">
               <code >
-const namesObservable = Rx.Observable.from(namesList).last();
+const pushArray$ = new Rx.Subject();
+const namesList = [];
+pushArray$
+  .switchMap((names) => Rx.Observable.from(names).last())
+  .subscribe(lastNameAdded => {
+    const li = document.createElement("li");
+    li.innerHTML = lastNameAdded;
+    boxNames.appendChild(li);
+  });
+
 Rx.Observable.fromEvent(btnRegister, "click")
   .map(() => firstNameInput.value + lastNameInput.value)
   .do(() => {
@@ -20,11 +29,7 @@ Rx.Observable.fromEvent(btnRegister, "click")
   })
   .subscribe(fullName => {
     namesList.push(fullName);
-    namesObservable.subscribe(lastNameAdded => {
-      const li = document.createElement("li");
-      li.innerHTML = lastNameAdded;
-      boxNames.appendChild(li);
-    });
+    pushArray$.next(namesList);
   });
               </code>
           </pre>                 
@@ -54,9 +59,16 @@ const subscribeArray = () => {
   const boxNames = document.getElementById("resultbox");
   const firstNameInput = document.getElementById("firstname");
   const lastNameInput = document.getElementById("lastname");  
+  const pushArray$ = new Rx.Subject();
   const namesList = [];
 
-  const namesObservable = Rx.Observable.from(namesList).last();
+  pushArray$
+    .switchMap((names) => Rx.Observable.from(names).last())
+    .subscribe(lastNameAdded => {
+      const li = document.createElement("li");
+      li.innerHTML = lastNameAdded;
+      boxNames.appendChild(li);
+    });
 
   Rx.Observable.fromEvent(btnRegister, "click")
     .map(() => `${firstNameInput.value} ${lastNameInput.value}`)
@@ -66,12 +78,7 @@ const subscribeArray = () => {
     })
     .subscribe(fullName => {
       namesList.push(fullName);
-
-      namesObservable.subscribe(lastNameAdded => {
-        const li = document.createElement("li");
-        li.innerHTML = lastNameAdded;
-        boxNames.appendChild(li);
-      });
+      pushArray$.next(namesList);
     });
 };
 
