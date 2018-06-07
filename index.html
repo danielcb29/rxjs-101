@@ -18,61 +18,8 @@
             <section id="mouseevent"></section>
             <section id="callback"></section>
             <section id="promise"></section>
-
-            <section class="example">
-                <div class="example__title">
-                    RxJS from API request
-                </div>
-                <div class="example__content">
-                    <div class="code">                    
-                        <pre class="prettyprint lang-js">
-                            <code >
-                            
-let btnViewGenres = document.querySelector('.view-genres');
-const apiUrl = '...';
-let requests$ = Rx.Observable
-        .fromEvent(btnViewGenres, 'click')
-        .map( _ => apiUrl);
-let responses$ = requests$
-        .flatMap(url => Rx.Observable.fromPromise(fetch(url)))
-        .flatMap(r => Rx.Observable.fromPromise(r.json()));
-let genres$ = responses$.map(getGenres);
-
-genres$.subscribe(response => {
-    response.forEach((genre) => {
-        appendGenresToDOM(genre);
-    });
-});
-
-function getGenres(res){
-    return res.genres;
-}
-
-function toTemplate(genre){
-    var a = document.createElement("a");
-    a.textContent = genre.name;
-    var div = document.createElement("div");
-    div.appendChild(a);
-    return div;
-}
-
-function appendGenresToDOM(genre){
-    var t = toTemplate(genre);
-    var g = document.getElementById('genres-box');
-    g.appendChild(t);
-}
-                            </code>
-                        </pre>                 
-                    </div>
-                    <div class="interaction">
-                        <button onClick="this.disabled=true;" class="w3-button w3-block w3-purple w3-round-large w3-hover-pink" style="width:100%" id="view-genres">View list of official genres for movies</button>
-                        <div class="w3-panel w3-card" id="genres-box"></div>
-                    </div>
-                </div>
-            </section>
-
+            <section id="api"></section>
             <section id="accordion"></section>
-            
         </div>
 
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>        
