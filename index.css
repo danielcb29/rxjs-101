@@ -58,19 +58,23 @@
     color: black;
 }
 
-#datastructure-example-form {
+.form {
     width: 25em;
     padding: 1.5em;
     margin: 0 auto;
     margin-bottom: 2em;
 }
+.form__input {
+    width:90%; 
+    margin: 0 auto;
+}
 
-#show, #collection-box {
+.form__resultheading, .form__resultbox {
     margin: 0 auto;
     width: 25em;
 }
 
-#collection-box {
+.form__resultbox {
     list-style-type: none;
 }
 

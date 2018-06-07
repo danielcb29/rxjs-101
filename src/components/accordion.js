@@ -1,5 +1,4 @@
 import render from './../utils/render'; 
-
 import Rx from "rxjs/Rx";
 
 const ACCORDION_ID = 'accordion';
