@@ -25,6 +25,6 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.7.0",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7"
+    "webpack-dev-server": "^3.1.11"
   }
 }
